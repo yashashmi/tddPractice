@@ -12,9 +12,9 @@ public class AppTest {
     @Test
     public void getSuccessMessage() {
         // Arrange
-        A a = new A();
+        UserCreator userCreator = new UserCreator();
         // Act
-        String result = a.GetMessage("John");
+        String result = userCreator.CreateUser("John");
         // Assert
         assertEquals("User Created Successfuly", result);
     }
@@ -22,9 +22,9 @@ public class AppTest {
     @Test
     public void getFailureMessage() {
         // Arrange
-        A a = new A();
+        UserCreator userCreator = new UserCreator();
         // Act
-        String result = a.GetMessage("John123");
+        String result = userCreator.CreateUser("John123");
         // Assert
         assertEquals("User Creation Failed", result);
     }
@@ -33,10 +33,10 @@ public class AppTest {
     public void userNameShouldContainOnlyLetters() {
 
         // Arrange
-        A a = new A();
+        UserCreator userCreator = new UserCreator();
 
         // Act
-        boolean result = a.userNameValid("John");
+        boolean result = userCreator.isUserNameValid("John");
 
         // Assert
         assertTrue(result);
@@ -47,37 +47,14 @@ public class AppTest {
     public void userNameNotLetters() {
 
         // Arrange
-        A a = new A();
+        UserCreator userCreator = new UserCreator();
 
         // Act
-        boolean result = a.userNameValid("John123");
+        boolean result = userCreator.isUserNameValid("John123");
 
         // Assert
         assertFalse(result);
 
-    }
-
-    class A {
-
-        public String GetMessage(String userName) {
-            if (userNameValid(userName)) {
-                return "User Created Successfuly";
-            }
-            return "User Creation Failed";
-        }
-
-        public boolean userNameValid(String userName) {
-            boolean atLeastOneNumber = false;
-            char[] userNameCharArray = userName.toCharArray();
-
-            for (char ch : userNameCharArray) {
-                if (Character.isDigit(ch)) {
-                    atLeastOneNumber = true;
-                }
-            }
-
-            return !atLeastOneNumber;
-        }
     }
 
 }
