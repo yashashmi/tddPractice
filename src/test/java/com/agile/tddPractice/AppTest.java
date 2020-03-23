@@ -15,7 +15,7 @@ public class AppTest {
         // Arrange
         UserCreator userCreator = new UserCreator();
         // Act
-        String result = userCreator.CreateUser("John","1234");
+        String result = userCreator.CreateUser("John", "1234");
         // Assert
         assertEquals("User Created Successfuly", result);
     }
@@ -25,7 +25,7 @@ public class AppTest {
         // Arrange
         UserCreator userCreator = new UserCreator();
         // Act
-        String result = userCreator.CreateUser("John123","123");
+        String result = userCreator.CreateUser("John123", "123");
         // Assert
         assertEquals("User Creation Failed", result);
     }
@@ -77,8 +77,7 @@ public class AppTest {
     }
 
     @Test
-    public void test()
-    {
+    public void test() {
         UserCreator userCreator = new UserCreator();
         userCreator.CreateUser("John", "1234");
 
@@ -86,7 +85,20 @@ public class AppTest {
 
         assertNotNull(result2);
 
-
     }
+
+    @Test
+    public void shouldReturnCorrectCorrespondingPassword()
+    {
+        UserCreator userCreator = new UserCreator();
+        userCreator.CreateUser("John", "1234");
+
+        String result = userCreator.getUser("John");
+
+        assertEquals("1234", result);
+    }
+
+
+    
 
 }

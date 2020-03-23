@@ -28,8 +28,13 @@ public class UserCreator {
     }
 
 	public String getUser(String userName) {
+       
         return UserData.get(userName);
-	}
+    }
+    
+    public HashMap<String, String> getUserData(){
+        return UserData;
+    }
 
 	
 }
