@@ -14,7 +14,7 @@ public class AppTest {
         // Arrange
         UserCreator userCreator = new UserCreator();
         // Act
-        String result = userCreator.CreateUser("John");
+        String result = userCreator.CreateUser("John","1234");
         // Assert
         assertEquals("User Created Successfuly", result);
     }
@@ -24,9 +24,27 @@ public class AppTest {
         // Arrange
         UserCreator userCreator = new UserCreator();
         // Act
-        String result = userCreator.CreateUser("John123");
+        String result = userCreator.CreateUser("John123","123");
         // Assert
         assertEquals("User Creation Failed", result);
+    }
+
+    @Test
+    public void userCreationFailedWhenPasswordIsEmpty() {
+        UserCreator userCreator = new UserCreator();
+        String result = userCreator.CreateUser("John", "");
+
+        assertEquals("User Creation Failed", result);
+
+    }
+
+    @Test
+    public void userCreatedSuccessfullyWhenValidPassword() {
+        UserCreator userCreator = new UserCreator();
+        String result = userCreator.CreateUser("John", "12345");
+
+        assertEquals("User Created Successfuly", result);
+
     }
 
     @Test

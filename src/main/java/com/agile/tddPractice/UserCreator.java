@@ -2,8 +2,8 @@ package com.agile.tddPractice;
 
 public class UserCreator {
 
-    public String CreateUser(String userName) {
-        if (isUserNameValid(userName)) {
+    public String CreateUser(String userName, String password) {
+        if (isUserNameValid(userName) && !password.isEmpty()) {
             return "User Created Successfuly";
         }
         return "User Creation Failed";
@@ -21,4 +21,6 @@ public class UserCreator {
 
         return !atLeastOneNumber;
     }
+
+	
 }
