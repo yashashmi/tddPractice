@@ -2,7 +2,6 @@ package com.agile.tddPractice;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 //import org.junit.Assert;
@@ -52,10 +51,10 @@ public class UserCreatorTests {
     public void userNameShouldContainOnlyLetters() {
 
         // Arrange
-        UserCreator userCreator = new UserCreator();
+        UserInputValidator validator = new UserInputValidator();
 
         // Act
-        boolean result = userCreator.isUserNameValid("John");
+        boolean result = validator.isUserNameValid("John");
 
         // Assert
         assertTrue(result);
@@ -66,42 +65,21 @@ public class UserCreatorTests {
     public void userNameNotLetters() {
 
         // Arrange
-        UserCreator userCreator = new UserCreator();
-
+        UserInputValidator validator = new UserInputValidator();
         // Act
-        boolean result = userCreator.isUserNameValid("John123");
+        boolean result = validator.isUserNameValid("John123");
 
         // Assert
         assertFalse(result);
 
     }
 
-    @Test
-    public void test() {
-        UserCreator userCreator = new UserCreator();
-        userCreator.CreateUser("John", "abcd123");
-
-        String result2 = userCreator.getUser("John");
-
-        assertNotNull(result2);
-
-    }
-
-    @Test
-    public void shouldReturnCorrectCorrespondingPassword() {
-        UserCreator userCreator = new UserCreator();
-        userCreator.CreateUser("John", "abcd123");
-
-        String result = userCreator.getUser("John");
-
-        assertEquals("abcd123", result);
-    }
-
+   
     @Test
     public void returnTrueWhenLengthOfPasswordGreaterThan5() {
 
-        UserCreator userCreator = new UserCreator();
-        boolean result = userCreator.doesPasswordMinimumLength("abcde123");
+        UserInputValidator validator = new UserInputValidator();
+        boolean result = validator.isValidPassword("abcde123");
 
         assertTrue(result);
     }
@@ -109,8 +87,8 @@ public class UserCreatorTests {
     @Test
     public void returnFalseWhenMinimumCriteriaNotMet() {
 
-        UserCreator userCreator = new UserCreator();
-        boolean result = userCreator.doesPasswordMinimumLength("ab1");
+        UserInputValidator validator = new UserInputValidator();
+        boolean result = validator.isValidPassword("ab1");
 
         assertFalse(result);
     }
@@ -118,8 +96,8 @@ public class UserCreatorTests {
     @Test
     public void returnTrueWhenPasswordHas1Alphabet()
     {
-        UserCreator userCreator = new UserCreator();
-        boolean result = userCreator.passwordHasAlphabets("abcde123");
+        UserInputValidator validator = new UserInputValidator();
+        boolean result = validator.isValidPassword("abcde123");
 
         assertTrue(result);
     }
@@ -127,8 +105,8 @@ public class UserCreatorTests {
     @Test
     public void returnFalseWhenNoAlphabets()
     {
-        UserCreator userCreator = new UserCreator();
-        boolean result = userCreator.passwordHasAlphabets("123456");
+        UserInputValidator validator = new UserInputValidator();
+        boolean result = validator.isValidPassword("123456");
 
         assertFalse(result);
     }
@@ -137,8 +115,8 @@ public class UserCreatorTests {
     @Test
     public void returnTrueWhenPasswordHas1Numeric()
     {
-        UserCreator userCreator = new UserCreator();
-        boolean result = userCreator.passwordHasOneNumeric("abcde123");
+        UserInputValidator validator = new UserInputValidator();
+        boolean result = validator.isValidPassword("abcde123");
 
         assertTrue(result);
     }
@@ -146,8 +124,8 @@ public class UserCreatorTests {
     @Test
     public void returnFalseWhenThereIsNotNumericInPassword()
     {
-        UserCreator userCreator = new UserCreator();
-        boolean result = userCreator.passwordHasOneNumeric("abcdefg");
+        UserInputValidator validator = new UserInputValidator();
+        boolean result = validator.isValidPassword("abcdefg");
 
         assertFalse(result);
     }
