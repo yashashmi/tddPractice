@@ -8,14 +8,14 @@ import static org.junit.Assert.assertTrue;
 //import org.junit.Assert;
 import org.junit.Test;
 
-public class AppTest {
+public class UserCreatorTests {
 
     @Test
     public void getSuccessMessage() {
         // Arrange
         UserCreator userCreator = new UserCreator();
         // Act
-        String result = userCreator.CreateUser("John", "1234");
+        String result = userCreator.CreateUser("John", "abcd123");
         // Assert
         assertEquals("User Created Successfuly", result);
     }
@@ -42,7 +42,7 @@ public class AppTest {
     @Test
     public void userCreatedSuccessfullyWhenValidPassword() {
         UserCreator userCreator = new UserCreator();
-        String result = userCreator.CreateUser("John", "12345");
+        String result = userCreator.CreateUser("John", "abcd123");
 
         assertEquals("User Created Successfuly", result);
 
@@ -79,7 +79,7 @@ public class AppTest {
     @Test
     public void test() {
         UserCreator userCreator = new UserCreator();
-        userCreator.CreateUser("John", "1234");
+        userCreator.CreateUser("John", "abcd123");
 
         String result2 = userCreator.getUser("John");
 
@@ -88,17 +88,68 @@ public class AppTest {
     }
 
     @Test
-    public void shouldReturnCorrectCorrespondingPassword()
-    {
+    public void shouldReturnCorrectCorrespondingPassword() {
         UserCreator userCreator = new UserCreator();
-        userCreator.CreateUser("John", "1234");
+        userCreator.CreateUser("John", "abcd123");
 
         String result = userCreator.getUser("John");
 
-        assertEquals("1234", result);
+        assertEquals("abcd123", result);
+    }
+
+    @Test
+    public void returnTrueWhenLengthOfPasswordGreaterThan5() {
+
+        UserCreator userCreator = new UserCreator();
+        boolean result = userCreator.doesPasswordMinimumLength("abcde123");
+
+        assertTrue(result);
+    }
+
+    @Test
+    public void returnFalseWhenMinimumCriteriaNotMet() {
+
+        UserCreator userCreator = new UserCreator();
+        boolean result = userCreator.doesPasswordMinimumLength("ab1");
+
+        assertFalse(result);
+    }
+
+    @Test
+    public void returnTrueWhenPasswordHas1Alphabet()
+    {
+        UserCreator userCreator = new UserCreator();
+        boolean result = userCreator.passwordHasAlphabets("abcde123");
+
+        assertTrue(result);
+    }
+
+    @Test
+    public void returnFalseWhenNoAlphabets()
+    {
+        UserCreator userCreator = new UserCreator();
+        boolean result = userCreator.passwordHasAlphabets("123456");
+
+        assertFalse(result);
     }
 
 
-    
+    @Test
+    public void returnTrueWhenPasswordHas1Numeric()
+    {
+        UserCreator userCreator = new UserCreator();
+        boolean result = userCreator.passwordHasOneNumeric("abcde123");
+
+        assertTrue(result);
+    }
+
+    @Test
+    public void returnFalseWhenThereIsNotNumericInPassword()
+    {
+        UserCreator userCreator = new UserCreator();
+        boolean result = userCreator.passwordHasOneNumeric("abcdefg");
+
+        assertFalse(result);
+    }
 
 }
