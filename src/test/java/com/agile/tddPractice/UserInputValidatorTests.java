@@ -23,7 +23,7 @@ public class UserInputValidatorTests{
     }
 
     @Test
-    public void userNameNotLetters() {
+    public void ShouldReturnFalseWhenUserNameDoesNotContainEnoughNumbers() {
 
         // Arrange
         UserInputValidator validator = new UserInputValidator();
@@ -37,7 +37,7 @@ public class UserInputValidatorTests{
 
    
     @Test
-    public void returnTrueWhenLengthOfPasswordGreaterThan5() {
+    public void ShouldReturnFalseWhenPasswordLengthIsShorterThanSix() {
 
         UserInputValidator validator = new UserInputValidator();
         boolean result = validator.isValidPassword("abcde123");
@@ -46,7 +46,7 @@ public class UserInputValidatorTests{
     }
 
     @Test
-    public void returnFalseWhenMinimumCriteriaNotMet() {
+    public void ShouldReturnFalseWhenPasswordDoesNotContainEnoughNumbers() {
 
         UserInputValidator validator = new UserInputValidator();
         boolean result = validator.isValidPassword("ab1");
